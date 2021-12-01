@@ -44,5 +44,3 @@ else {
   }
 }
 
-//test
-razcrzaev&ze azc
