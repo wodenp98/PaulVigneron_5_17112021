@@ -19,7 +19,7 @@ console.log(idProduct);
     let colors = document.getElementById("colors");
 
 //Ajout des détails du produit
-    image.innerHTML = `<img src="${data.imageUrl}" alt="${data.altTxt}">`
+    image.innerHTML = `<img id="image" src="${data.imageUrl}" alt="${data.altTxt}">`
     title.innerHTML = `<h1 id="title">${data.name}</h1>`
     price.innerHTML = `<span id="price">${data.price}</span>`
     description.innerHTML = `<p id="description">${data.description}</p>`
@@ -38,10 +38,11 @@ event.preventDefault();
 //Création d'un objet à ajouter au panier
 let quantityProduct = document.getElementById("quantity").value;
 let colorProduct = document.getElementById("colors").value;
-let imageProduct = document.querySelector(".item__img");
+let imageProduct = document.getElementById("image").src;
 let titleProduct = document.getElementById("title").textContent;
 let priceProduct = document.getElementById("price").textContent;
 
+console.log(imageProduct);
 
 let productShop = {
    id: idProduct,

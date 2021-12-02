@@ -17,16 +17,20 @@ else {
   for (let i in stockProductStorage){
     console.log(stockProductStorage)
 
+
+    let priceProduct = stockProductStorage[i].price * stockProductStorage[i].quantity;
+    
     cartItems.innerHTML +=` 
   
   <article class="cart__item" data-id=${stockProductStorage[i].id} data-color="${stockProductStorage[i].color}">
     <div class="cart__item__img">
       <img src=${stockProductStorage[i].img} alt=${stockProductStorage[i].altTxt}>
+
     </div>
     <div class="cart__item__content">
       <div class="cart__item__content__titlePrice">
         <h2>${stockProductStorage[i].name}</h2>
-        <p>${stockProductStorage[i].price} €</p>
+        <p>${priceProduct}€</p>
       </div>
       <div class="cart__item__content__settings">
       <p>Couleur : ${stockProductStorage[i].color}</p>
