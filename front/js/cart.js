@@ -52,7 +52,7 @@ else {
   let priceTotal = [];
 
 // Aller chercher les prix dans le panier
-  for(let m = 0; m < stockProductStorage.length; m++) {
+  for(let m in stockProductStorage) {
   let priceProductCart = stockProductStorage[m].price * stockProductStorage[m].quantity
 
 
@@ -67,10 +67,6 @@ else {
   document.getElementById("totalQuantity").innerHTML = priceTotalCalcul
 
   console.log(priceTotalCalcul)
-
-
-
-
 
 }
 }
