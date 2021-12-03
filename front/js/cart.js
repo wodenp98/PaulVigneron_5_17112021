@@ -2,21 +2,23 @@
 let stockProductStorage= JSON.parse(localStorage.getItem("products")) ;
 console.log(stockProductStorage)
 
-let cartItems = document.getElementById("cart__items")
+let cartItems = document.getElementById("cart__items");
 console.log(cartItems)
+
 
 // Si le panier est vide
 if (stockProductStorage === null) {
   cartItems.innerHTML +=`
    <div class="cart__item__img">
-    <p> Le panier est vide. Merci de sélectionner un produit</p>
+    <p>Merci de sélectionner un produit</p>
     </div>`
 }
 // Si le panier contient un produit
 else {      
   for (let i in stockProductStorage){
-    console.log(stockProductStorage)
+   
 
+    // Intégration des éléments dans le panier
 
     let priceProduct = stockProductStorage[i].price * stockProductStorage[i].quantity;
     
@@ -45,6 +47,27 @@ else {
     </div>
   </article> 
     `
+
+    // Quantité total dans le panier 
+  let priceTotal = [];
+
+// Aller chercher les prix dans le panier
+  for(let m in stockProductStorage) {
+  let priceProductCart = stockProductStorage[m].price * stockProductStorage[m].quantity
+
+
+  // Mettre les prix du panier dans la variable priceTotal
+  priceTotal.push(priceProductCart)
+  console.log(priceProductCart)
   }
+  //Aditionner les prix du tableaux
+  const reducer = (previousValue, currentValue) => previousValue + currentValue;
+  const priceTotalCalcul = priceTotal.reduce(reducer);
+  
+  document.getElementById("totalQuantity").innerHTML = priceTotalCalcul
+
+  console.log(priceTotalCalcul)
+
+}
 }
 
