@@ -90,7 +90,11 @@ else {
     });
   }
 
-// Modifier la quantité d'un produit
+// // Modifier la quantité d'un produit
+
+
+}}
+
 
 // Formulaire 
 
@@ -238,12 +242,50 @@ const validEmail = function(inputEmail){
 
 
 
-// Envoi du formulaire à l'API
+// Récupération des valeurs du formulaire
 
+let buttonOrder = document.getElementById('order')
 
-}}
+buttonOrder.addEventListener('click', (e) => {
+  e.preventDefault();
 
+  let formValues = {
+    firstName: document.querySelector('#firstName').value,
+    lastName: document.querySelector('#lastName').value,
+    adress: document.querySelector('#address').value,
+    city: document.querySelector('#city').value,
+    email: document.querySelector('#email').value
 
+  }
+ 
+  // Mettre les valeurs du formulaire dans le localstorage
+
+  localStorage.setItem("formValues",JSON.stringify(formValues))
+
+  // Envoie des valeurs vers le serveur
+  let sendForm = {
+    stockProductStorage, formValues
+  }
+console.log(sendForm)
+
+  let promiseForm = fetch('http://localhost:3000/api/products/order', {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},  
+    body: JSON.stringify(sendForm),
+    
+})
+
+  // Pour voir le résultat du serveur dans la console 
+  promiseForm.then(async(response) => {
+    try{
+      const content = await response.json();
+
+    }catch(e){
+      console.log(e);
+    }
+  }
+
+)})
 
 
 
