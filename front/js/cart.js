@@ -77,7 +77,7 @@ else {
 
   
 
-//Supprimer un produit
+// //Supprimer un produit
 
   let deleteProduct = document.querySelectorAll(".deleteItem");
 
@@ -90,21 +90,7 @@ else {
     });
   }
 
-// Modifier la quantité
-
-//  let modifyQuantity = document.getElementsByClassName('itemQuantity')
-
-//  modifyQuantity.addEventListener('change', () => {
-//    if (modifyQuantity[i].value > 100) {
-//      modifyQuantity[i].value = 100
-//      alert('Vous ne pouvez dépasser 100 unités pour ce produit')
-//    }
-//    else {
-//      stockProductStorage[i].quantity = modifyQuantity[i].value
-//      localStorage.setItem("products", JSON.stringify(stockProductStorage))
-//    }
-//  })
-
+// Modifier la quantité d'un produit
 
 // Formulaire 
 
@@ -252,33 +238,32 @@ const validEmail = function(inputEmail){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Envoi du formulaire à l'API
 
 
 }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
