@@ -49,19 +49,29 @@ else {
 
     // Quantité total dans le panier 
   let priceTotal = [];
+  let productQuantity = document.getElementsByClassName("itemQuantity");
+  let productTotal = 0;
+
+  for(let i = 0; i < productQuantity.length; i++) {
+    productTotal += productQuantity[i].valueAsNumber;
+  }
+
+ let productTotalQuantity = document.getElementById("totalQuantity");
+  productTotalQuantity.innerHTML = productTotal;
 
 // Aller chercher les prix dans le panier
   for(let i in stockProductStorage) {
-  let priceProductCart = stockProductStorage[i].price * stockProductStorage[i].quantity
+    let priceProductCart = stockProductStorage[i].price * stockProductStorage[i].quantity
 
   // Mettre les prix du panier dans la variable priceTotal
-  priceTotal.push(priceProductCart)
+    priceTotal.push(priceProductCart)
   }
+
   //Aditionner les prix du tableaux
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
   const priceTotalCalcul = priceTotal.reduce(reducer);
   
-  document.getElementById("totalQuantity").innerHTML = priceTotalCalcul
+  document.getElementById("totalPrice").innerHTML = priceTotalCalcul
 
   
 
@@ -80,21 +90,21 @@ else {
 
 // Modifier la quantité
 
- let modifyQuantity = document.getElementsByClassName('itemQuantity')
+//  let modifyQuantity = document.getElementsByClassName('itemQuantity')
 
- modifyQuantity.addEventListener('change', () => {
-   if (modifyQuantity[i].value > 100) {
-     modifyQuantity[i].value = 100
-     alert('Vous ne pouvez dépasser 100 unités pour ce produit')
-   }
-   else {
-     stockProductStorage[i].quantity = modifyQuantity[i].value
-     localStorage.setItem("products", JSON.stringify(stockProductStorage))
-   }
- })
+//  modifyQuantity.addEventListener('change', () => {
+//    if (modifyQuantity[i].value > 100) {
+//      modifyQuantity[i].value = 100
+//      alert('Vous ne pouvez dépasser 100 unités pour ce produit')
+//    }
+//    else {
+//      stockProductStorage[i].quantity = modifyQuantity[i].value
+//      localStorage.setItem("products", JSON.stringify(stockProductStorage))
+//    }
+//  })
 
 
-
+// Formulaire 
 
 
 }}
