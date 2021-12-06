@@ -3,8 +3,6 @@ let stockProductStorage= JSON.parse(localStorage.getItem("products")) ;
 console.log(stockProductStorage)
 
 let cartItems = document.getElementById("cart__items");
-console.log(cartItems)
-
 
 // Si le panier est vide
 if (stockProductStorage === null) {
@@ -13,6 +11,7 @@ if (stockProductStorage === null) {
     <p>Merci de sélectionner un produit</p>
     </div>`
 }
+
 // Si le panier contient un produit
 else {      
   for (let i in stockProductStorage){
@@ -52,13 +51,11 @@ else {
   let priceTotal = [];
 
 // Aller chercher les prix dans le panier
-  for(let m in stockProductStorage) {
-  let priceProductCart = stockProductStorage[m].price * stockProductStorage[m].quantity
-
+  for(let i in stockProductStorage) {
+  let priceProductCart = stockProductStorage[i].price * stockProductStorage[i].quantity
 
   // Mettre les prix du panier dans la variable priceTotal
   priceTotal.push(priceProductCart)
-  console.log(priceProductCart)
   }
   //Aditionner les prix du tableaux
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
@@ -66,8 +63,38 @@ else {
   
   document.getElementById("totalQuantity").innerHTML = priceTotalCalcul
 
-  console.log(priceTotalCalcul)
+  
 
-}
-}
+//Supprimer un produit
 
+  let deleteProduct = document.querySelectorAll(".deleteItem");
+
+  for (let i = 0; i < deleteProduct.length; i++) {
+    deleteProduct[i].addEventListener("click", (event) => {
+      event.preventDefault();
+      stockProductStorage.splice(i, 1);
+      localStorage.setItem("products", JSON.stringify(stockProductStorage));
+      location.reload();
+    });
+  }
+
+// Modifier la quantité
+
+ let modifyQuantity = document.getElementsByClassName('itemQuantity')
+
+ modifyQuantity.addEventListener('change', () => {
+   if (modifyQuantity[i].value > 100) {
+     modifyQuantity[i].value = 100
+     alert('Vous ne pouvez dépasser 100 unités pour ce produit')
+   }
+   else {
+     stockProductStorage[i].quantity = modifyQuantity[i].value
+     localStorage.setItem("products", JSON.stringify(stockProductStorage))
+   }
+ })
+
+
+
+
+
+}}
