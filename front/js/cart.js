@@ -282,20 +282,29 @@ buttonOrder.addEventListener('click', (e) => {
   let contact = {
     firstName: document.querySelector('#firstName').value,
     lastName: document.querySelector('#lastName').value,
-    adress: document.querySelector('#address').value,
+    address: document.querySelector('#address').value,
     city: document.querySelector('#city').value,
     email: document.querySelector('#email').value
 
   }
  
+  let products = [];
+  for (i = 0; i < stockProductStorage.length; i++){
+    let productId = stockProductStorage[i].id;
+    products.push(productId)
+  }
+console.log(contact)
+console.log(products)
+
   // Mettre les valeurs du formulaire dans le localstorage
 
   localStorage.setItem("contact",JSON.stringify(contact))
 
   // Envoie des valeurs vers le serveur
   let sendForm = {
-    product, contact
+    contact, products
   }
+
 console.log(sendForm)
 
   let promiseForm = fetch('http://localhost:3000/api/products/order', {
