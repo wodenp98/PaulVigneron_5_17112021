@@ -322,6 +322,7 @@ console.log(sendForm)
       if (response.ok && stockProductStorage){
         window.location = `../html/confirmation.html?id=${content.orderId}`
       }else {
+        alert('veuillez remplir le formulaire')
         console.log(response.status)
       }
 
@@ -332,18 +333,8 @@ console.log(sendForm)
 
 )})
 
-// Id de la commande 
-
-let orderId = new URL(window.location.href).searchParams.get('id')
-let showId = () => {
-	let idCommand = document.querySelector('#orderId')
-	if (document.URL.includes('confirmation.html')) {
-		idCommand.innerHTML = orderId
-	}
-}
 
 
-showId()
 
 
 
