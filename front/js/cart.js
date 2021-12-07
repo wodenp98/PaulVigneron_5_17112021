@@ -46,6 +46,7 @@ else {
     </div>
   </article> 
     `
+  }
 
     // Quantité total dans le panier 
   let priceTotal = [];
@@ -90,10 +91,39 @@ else {
     });
   }
 
-// // Modifier la quantité d'un produit
+// Modifier la quantité d'un produit
+function modifyQuantity() {
+  let quantityModify = document.querySelectorAll(".itemQuantity");
+
+  for (let k = 0; k < quantityModify.length; k++) {
+      quantityModify[k].addEventListener("change", (event) => {
+
+          event.preventDefault();
+
+          //intégrer la nouvelle quantité dans un tableau 
+          let quantityModif = quantityModify[k].value;
+          const newLocalStorage = {
+              id: stockProductStorage[k].id,
+              img: stockProductStorage[k].img,
+              altTxt: stockProductStorage[k].altTxt,
+              name: stockProductStorage[k].name,
+              color: stockProductStorage[k].color,
+              price: stockProductStorage[k].price,
+              quantity: quantityModif
+          };
+
+          stockProductStorage[k] = newLocalStorage;
 
 
-}}
+          localStorage.setItem("products", JSON.stringify(stockProductStorage));
+          location.reload();
+
+      })
+
+  }
+}
+modifyQuantity();
+}
 
 
 // Formulaire 
@@ -249,7 +279,7 @@ let buttonOrder = document.getElementById('order')
 buttonOrder.addEventListener('click', (e) => {
   e.preventDefault();
 
-  let formValues = {
+  let contact = {
     firstName: document.querySelector('#firstName').value,
     lastName: document.querySelector('#lastName').value,
     adress: document.querySelector('#address').value,
@@ -260,11 +290,11 @@ buttonOrder.addEventListener('click', (e) => {
  
   // Mettre les valeurs du formulaire dans le localstorage
 
-  localStorage.setItem("formValues",JSON.stringify(formValues))
+  localStorage.setItem("contact",JSON.stringify(contact))
 
   // Envoie des valeurs vers le serveur
   let sendForm = {
-    stockProductStorage, formValues
+    product, contact
   }
 console.log(sendForm)
 
