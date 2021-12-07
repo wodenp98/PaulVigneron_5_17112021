@@ -293,8 +293,8 @@ buttonOrder.addEventListener('click', (e) => {
     let productId = stockProductStorage[i].id;
     products.push(productId)
   }
-console.log(contact)
-console.log(products)
+
+
 
   // Mettre les valeurs du formulaire dans le localstorage
 
@@ -319,6 +319,12 @@ console.log(sendForm)
     try{
       const content = await response.json();
 
+      if (response.ok && stockProductStorage){
+        window.location = `../html/confirmation.html?id=${content.orderId}`
+      }else {
+        console.log(response.status)
+      }
+
     }catch(e){
       console.log(e);
     }
@@ -326,17 +332,18 @@ console.log(sendForm)
 
 )})
 
+// Id de la commande 
+
+let orderId = new URL(window.location.href).searchParams.get('id')
+let showId = () => {
+	let idCommand = document.querySelector('#orderId')
+	if (document.URL.includes('confirmation.html')) {
+		idCommand.innerHTML = orderId
+	}
+}
 
 
-
-
-
-
-
-
-
-
-
+showId()
 
 
 
