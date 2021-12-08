@@ -44,6 +44,7 @@ let priceProduct = document.getElementById("price").textContent;
 
 console.log(imageProduct);
 
+// Affectation des éléments html
 let productShop = {
    id: idProduct,
    quantity: quantityProduct,

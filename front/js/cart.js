@@ -2,6 +2,7 @@
 let stockProductStorage= JSON.parse(localStorage.getItem("products")) ;
 console.log(stockProductStorage)
 
+// Injecter l'html dans le DOM
 let cartItems = document.getElementById("cart__items");
 
 // Si le panier est vide
@@ -70,7 +71,7 @@ else {
     priceTotal.push(priceProductCart)
   }
 
-  //Aditionner les prix du tableaux
+  // Additionner les prix du tableaux
   const reducer = (previousValue, currentValue) => previousValue + currentValue;
   const priceTotalCalcul = priceTotal.reduce(reducer);
   
@@ -78,7 +79,7 @@ else {
 
   
 
-// //Supprimer un produit
+  //Supprimer un produit
 
   let deleteProduct = document.querySelectorAll(".deleteItem");
 
@@ -279,6 +280,7 @@ let buttonOrder = document.getElementById('order')
 buttonOrder.addEventListener('click', (e) => {
   e.preventDefault();
 
+// Récupération des éléments sous le format contact comme indiqué dans le back end
   let contact = {
     firstName: document.querySelector('#firstName').value,
     lastName: document.querySelector('#lastName').value,
@@ -288,6 +290,7 @@ buttonOrder.addEventListener('click', (e) => {
 
   }
  
+// Injections des produits présents dans le localstorage sous la variable products pour respecter le back end
   let products = [];
   for (i = 0; i < stockProductStorage.length; i++){
     let productId = stockProductStorage[i].id;
@@ -307,6 +310,8 @@ buttonOrder.addEventListener('click', (e) => {
 
 console.log(sendForm)
 
+// Envoie de la variable sendForm vers le serveur
+
   let promiseForm = fetch('http://localhost:3000/api/products/order', {
     method: "POST",
     headers: {"Content-Type": "application/json"},  
@@ -320,6 +325,8 @@ console.log(sendForm)
       const content = await response.json();
 
       if (response.ok && stockProductStorage){
+
+        // Aller vers la page de confirmation  
         window.location = `../html/confirmation.html?id=${content.orderId}`
       }else {
         alert('veuillez remplir le formulaire')
