@@ -130,7 +130,7 @@ modifyQuantity();
 // Formulaire 
 
 // Prénom 
-
+let securityFirstName = false
 let formFirstName = document.getElementById('firstName');
 let firstNameErrorMsg = document.getElementById("firstNameErrorMsg");
 
@@ -150,6 +150,7 @@ const validFirstName = function(inputFirstName){
     console.log(testFirstName)
 
   if (testFirstName){
+    securityFirstName = true;
     firstNameErrorMsg.innerHTML = 'Prénom Valide';
   }
   else{
@@ -159,7 +160,7 @@ const validFirstName = function(inputFirstName){
 
 
 // Nom de famille
-
+let securityLastName = false;
 let formLastName = document.getElementById('lastName');
 let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
 
@@ -179,6 +180,7 @@ const validLastName = function(inputLastName){
     console.log(testLastName)
 
   if (testLastName){
+    securityLastName = true;
     lastNameErrorMsg.innerHTML = 'Nom Valide';
   }
   else{
@@ -188,26 +190,27 @@ const validLastName = function(inputLastName){
 
 
 // Adresse 
-
-let formAdress = document.getElementById('address');
+let securityAddress = false;
+let formAddress = document.getElementById('address');
 let addressErrorMsg = document.getElementById('addressErrorMsg');
 
 
 // Ecouter la modification de l'adresse
-formAdress.addEventListener('change', function(){
-  validAdress(this)
+formAddress.addEventListener('change', function(){
+  validAddress(this)
 });
 
-const validAdress = function(inputAdress){
+const validAddress = function(inputAddress){
 
   // création de la reg exp pour l'adresse
-  let adressRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
+  let addressRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
 
   // On teste l'expression régulière
-  let testAdress = adressRegExp.test(inputAdress.value);
-    console.log(testAdress)
+  let testAddress = addressRegExp.test(inputAddress.value);
+    console.log(testAddress)
 
-  if (testAdress){
+  if (testAddress){
+    securityAddress = true;
     addressErrorMsg.innerHTML = 'Addresse Valide';
   }
   else{
@@ -217,7 +220,7 @@ const validAdress = function(inputAdress){
 
 
 // Ville
-
+let securityCity = false;
 let formCity = document.getElementById('city')
 let cityErrorMsg = document.getElementById('cityErrorMsg')
 
@@ -236,6 +239,7 @@ const validCity = function(inputCity){
     console.log(testCity)
 
   if (testCity){
+    securityCity = true;
     cityErrorMsg.innerHTML = 'Ville Valide';
   }
   else{
@@ -245,7 +249,7 @@ const validCity = function(inputCity){
 
 
 // Email 
-
+let securityEmail = false;
 let formEmail = document.getElementById('email')
 let emailErrorMsg = document.getElementById('emailErrorMsg')
 
@@ -264,6 +268,7 @@ const validEmail = function(inputEmail){
     console.log(testEmail)
 
   if (testEmail){
+    securityEmail = true;
     emailErrorMsg.innerHTML = 'Email Valide';
   }
   else{
@@ -329,17 +334,16 @@ console.log(sendForm)
         // Aller vers la page de confirmation  
         window.location = `../html/confirmation.html?id=${content.orderId}`
       }else {
-        alert('veuillez remplir le formulaire')
         console.log(response.status)
       }
 
     }catch(e){
       console.log(e);
     }
-  }
+  })
+  
 
-)})
-
+})
 
 
 
