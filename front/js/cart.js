@@ -129,152 +129,150 @@ modifyQuantity();
 
 // Formulaire 
 
-// Prénom 
-let securityFirstName = false
-let formFirstName = document.getElementById('firstName');
-let firstNameErrorMsg = document.getElementById("firstNameErrorMsg");
+let form = document.querySelector('.cart__order__form')
+console.log(form)
+
+
 
 
 // Ecouter la modification du prénom
-  formFirstName.addEventListener('change', function(){
-  validFirstName(this)
+form.firstName.addEventListener('change', function() {
+  validFirstName(this);
 });
+
+// Ecouter la modification du nom 
+form.lastName.addEventListener('change', function() {
+  validLastName(this);
+})
+
+// Ecouter la modification de l'adresse
+form.address.addEventListener('change', function() {
+  validAddress(this);
+})
+
+// Ecouter la modification de la ville 
+form.city.addEventListener('change', function() {
+  validCity(this);
+})
+
+// Ecouter la modification de l'email
+form.email.addEventListener('change', function() {
+  validEmail(this);
+});
+
+
+// Ecouter la soumission du formulaire
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  if(validFirstName(form.firstName) && validLastName(form.lastName) && validAddress(form.address) && validCity(form.city) && validEmail(form.email)){
+    form.submit();
+  }else{
+    alert('Veuillez remplir le formulaire')
+  }
+})
+
+
+
+
+// Validation prénom
 
 const validFirstName = function(inputFirstName){
 
   // création de la reg exp pour le prénom
-  let firstNameRegExp = new RegExp (/^[a-zA-ZÀ-ÿ_-]{2,30}$/);
+  let firstNameRegExp = new RegExp (/^[a-zA-ZÀ-ÿ_-]{2,50}$/);
+ 
+  // Récupération du message de validation ou d'erreur
+  let errorFirstName = inputFirstName.nextElementSibling;
 
   // On teste l'expression régulière
-  let testFirstName = firstNameRegExp.test(inputFirstName.value);
-    console.log(testFirstName)
-
-  if (testFirstName){
-    securityFirstName = true;
-    firstNameErrorMsg.innerHTML = 'Prénom Valide';
+  if (firstNameRegExp.test(inputFirstName.value)){
+    errorFirstName.innerHTML = 'Prénom Valide';
+    return true;
   }
   else{
-    firstNameErrorMsg.innerHTML = 'Prénom Non Valide' ; 
+    errorFirstName.innerHTML = 'Prénom Non Valide' ; 
+    return false;
   }
 };
 
+// Validation nom
 
-// Nom de famille
-let securityLastName = false;
-let formLastName = document.getElementById('lastName');
-let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
-
-
-// Ecouter la modification du nom
-formLastName.addEventListener('change', function(){
-  validLastName(this)
-});
-
-const validLastName = function(inputLastName){
-
-  // création de la reg exp pour le nom
+const validLastName = function(inputLastName) {
+  // Création de la reg exp pour validation du nom
   let lastNameRegExp = new RegExp (/^[a-zA-ZÀ-ÿ_-]{2,50}$/);
 
+
+  // Récupération du message de validation ou d'erreur
+  let errorLastName = inputLastName.nextElementSibling;
+
   // On teste l'expression régulière
-  let testLastName = lastNameRegExp.test(inputLastName.value);
-    console.log(testLastName)
-
-  if (testLastName){
-    securityLastName = true;
-    lastNameErrorMsg.innerHTML = 'Nom Valide';
+  if(lastNameRegExp.test(inputLastName.value)){
+    errorLastName.innerHTML = 'Nom Valide';
+    return true;
+  }else {
+    errorLastName.innerHTML = 'Nom Non Valide';
+    return false;
   }
-  else{
-    lastNameErrorMsg.innerHTML = 'Nom Non Valide' ; 
-  }
-};
+}
 
+// Validation de l'adresse
 
-// Adresse 
-let securityAddress = false;
-let formAddress = document.getElementById('address');
-let addressErrorMsg = document.getElementById('addressErrorMsg');
-
-
-// Ecouter la modification de l'adresse
-formAddress.addEventListener('change', function(){
-  validAddress(this)
-});
-
-const validAddress = function(inputAddress){
-
-  // création de la reg exp pour l'adresse
+const validAddress = function(inputAddress) {
+  // Création de la reg exp pour validation de l'adresse
   let addressRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
 
+  // Récupération du message de validation ou d'erreur
+  let errorAddress = inputAddress.nextElementSibling;
+
   // On teste l'expression régulière
-  let testAddress = addressRegExp.test(inputAddress.value);
-    console.log(testAddress)
-
-  if (testAddress){
-    securityAddress = true;
-    addressErrorMsg.innerHTML = 'Addresse Valide';
+  if(addressRegExp.test(inputAddress.value)){
+    errorAddress.innerHTML = 'Adresse Valide';
+    return true;
+  }else {
+    errorAddress.innerHTML = 'Adresse Non Valide';
+    return false;
   }
-  else{
-    addressErrorMsg.innerHTML = 'Adresse Non Valide' ; 
-  }
-};
+}
 
+// Validation Ville
 
-// Ville
-let securityCity = false;
-let formCity = document.getElementById('city')
-let cityErrorMsg = document.getElementById('cityErrorMsg')
-
-// Ecouter la modification de la ville
-formCity.addEventListener('change', function(){
-  validCity(this)
-});
-
-const validCity = function(inputCity){
-
-  // création de la reg exp pour le ville
+const validCity = function(inputCity) {
+  // Création de la reg exp pour validation de la ville
   let cityRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
 
+  // Récupération du message de validation ou d'erreur
+  let errorCity = inputCity.nextElementSibling;
+
   // On teste l'expression régulière
-  let testCity = cityRegExp.test(inputCity.value);
-    console.log(testCity)
-
-  if (testCity){
-    securityCity = true;
-    cityErrorMsg.innerHTML = 'Ville Valide';
+  if(cityRegExp.test(inputCity.value)){
+    errorCity.innerHTML = 'Ville Valide';
+    return true;
+  }else {
+    errorCity.innerHTML = 'Ville Non Valide';
+    return false;
   }
-  else{
-    cityErrorMsg.innerHTML = 'Ville Non Valide' ; 
-  }
-};
+}
 
 
-// Email 
-let securityEmail = false;
-let formEmail = document.getElementById('email')
-let emailErrorMsg = document.getElementById('emailErrorMsg')
+// Validation Email
 
-// Ecouter la modification de l'email
-formEmail.addEventListener('change', function(){
-  validEmail(this)
-});
-
-const validEmail = function(inputEmail){
-
-  // création de la reg exp pour l'email
+const validEmail = function(inputEmail) {
+  // Création de la reg exp pour validation de l'email
   let emailRegExp = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-zA-Z]{2,3}$', 'g');
 
-  // On teste l'expression régulière
-  let testEmail = emailRegExp.test(inputEmail.value);
-    console.log(testEmail)
+  // Récupération du message de validation ou d'erreur
+  let errorEmail = inputEmail.nextElementSibling;
 
-  if (testEmail){
-    securityEmail = true;
-    emailErrorMsg.innerHTML = 'Email Valide';
+  // On teste l'expression régulière
+  if(emailRegExp.test(inputEmail.value)){
+    errorEmail.innerHTML = 'Email Valide';
+    return true;
+  }else {
+    errorEmail.innerHTML = 'Email Non Valide';
+    return false;
   }
-  else{
-    emailErrorMsg.innerHTML = 'Email Non Valide' ; 
-  }
-};
+}
+
 
 
 
@@ -344,16 +342,3 @@ console.log(sendForm)
   
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
