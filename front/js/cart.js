@@ -219,7 +219,7 @@ const validLastName = function(inputLastName) {
 
 const validAddress = function(inputAddress) {
   // Création de la reg exp pour validation de l'adresse
-  let addressRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
+  let addressRegExp = new RegExp ("^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s_ ]{3,}$", "g");
 
   // Récupération du message de validation ou d'erreur
   let errorAddress = inputAddress.nextElementSibling;
@@ -238,7 +238,7 @@ const validAddress = function(inputAddress) {
 
 const validCity = function(inputCity) {
   // Création de la reg exp pour validation de la ville
-  let cityRegExp = new RegExp (/^[#.0-9a-zA-ZÀ-ÿ\s,-]{2,100}$/);
+  let cityRegExp = new RegExp ("^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s_ ]{3,}$", "g");
 
   // Récupération du message de validation ou d'erreur
   let errorCity = inputCity.nextElementSibling;
