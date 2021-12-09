@@ -183,16 +183,19 @@ const validFirstName = function(inputFirstName){
  
   // Récupération du message de validation ou d'erreur
   let errorFirstName = inputFirstName.nextElementSibling;
+  let checkFirstName = firstNameRegExp.test(inputFirstName.value)
 
   // On teste l'expression régulière
-  if (firstNameRegExp.test(inputFirstName.value)){
+  if (checkFirstName){
     errorFirstName.innerHTML = 'Prénom Valide';
-    return true;
+    return inputFirstName.value
   }
   else{
     errorFirstName.innerHTML = 'Prénom Non Valide' ; 
-    return false;
   }
+  console.log(checkFirstName)
+  return checkFirstName
+  
 };
 
 // Validation nom
@@ -204,15 +207,17 @@ const validLastName = function(inputLastName) {
 
   // Récupération du message de validation ou d'erreur
   let errorLastName = inputLastName.nextElementSibling;
+  let checkLastName = lastNameRegExp.test(inputLastName.value)
 
   // On teste l'expression régulière
-  if(lastNameRegExp.test(inputLastName.value)){
+  if(checkLastName){
     errorLastName.innerHTML = 'Nom Valide';
-    return true;
+    return inputLastName.value
   }else {
     errorLastName.innerHTML = 'Nom Non Valide';
-    return false;
   }
+  console.log(checkLastName)
+  return checkLastName
 }
 
 // Validation de l'adresse
@@ -223,15 +228,17 @@ const validAddress = function(inputAddress) {
 
   // Récupération du message de validation ou d'erreur
   let errorAddress = inputAddress.nextElementSibling;
+  checkAddress = addressRegExp.test(inputAddress.value)
 
   // On teste l'expression régulière
-  if(addressRegExp.test(inputAddress.value)){
+  if(checkAddress){
     errorAddress.innerHTML = 'Adresse Valide';
-    return true;
+    return inputAddress.value
   }else {
     errorAddress.innerHTML = 'Adresse Non Valide';
-    return false;
   }
+  console.log(checkAddress)
+  return checkAddress
 }
 
 // Validation Ville
@@ -242,15 +249,17 @@ const validCity = function(inputCity) {
 
   // Récupération du message de validation ou d'erreur
   let errorCity = inputCity.nextElementSibling;
+  let checkCity = cityRegExp.test(inputCity.value)
 
   // On teste l'expression régulière
-  if(cityRegExp.test(inputCity.value)){
+  if(checkCity){
     errorCity.innerHTML = 'Ville Valide';
-    return true;
+    return inputCity.value
   }else {
     errorCity.innerHTML = 'Ville Non Valide';
-    return false;
   }
+  console.log(checkCity)
+  return checkCity
 }
 
 
@@ -262,15 +271,17 @@ const validEmail = function(inputEmail) {
 
   // Récupération du message de validation ou d'erreur
   let errorEmail = inputEmail.nextElementSibling;
+  let checkEmail = emailRegExp.test(inputEmail.value)
 
   // On teste l'expression régulière
-  if(emailRegExp.test(inputEmail.value)){
+  if(checkEmail){
     errorEmail.innerHTML = 'Email Valide';
-    return true;
+    return inputEmail.value
   }else {
     errorEmail.innerHTML = 'Email Non Valide';
-    return false;
   }
+  console.log(checkEmail)
+  return checkEmail
 }
 
 
@@ -285,11 +296,11 @@ buttonOrder.addEventListener('click', (e) => {
 
 // Récupération des éléments sous le format contact comme indiqué dans le back end
   let contact = {
-    firstName: document.querySelector('#firstName').value,
-    lastName: document.querySelector('#lastName').value,
-    address: document.querySelector('#address').value,
-    city: document.querySelector('#city').value,
-    email: document.querySelector('#email').value
+    firstName: validFirstName(form.firstName),
+    lastName: validLastName(form.lastName),
+    address: validAddress(form.address),
+    city: validCity(form.city),
+    email: validEmail(form.email)
 
   }
  
