@@ -166,8 +166,6 @@ form.addEventListener('submit', function(e){
   e.preventDefault();
   if(validFirstName(form.firstName) && validLastName(form.lastName) && validAddress(form.address) && validCity(form.city) && validEmail(form.email)){
     form.submit();
-  }else{
-    alert('Veuillez remplir le formulaire')
   }
 })
 
